@@ -1,0 +1,24 @@
+from sqlalchemy import (CheckConstraint, Column, Integer, String,
+                        UniqueConstraint)
+from sqlalchemy.orm import relationship
+
+from app.db.base import Base
+
+
+class Book(Base):
+    __tablename__ = "books"
+    __table_args__ = (
+        UniqueConstraint("title", name="uq_books_title"),
+        CheckConstraint("copies_available >= 0", name="ck_books_copies_nonnegative"),
+    )
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String, nullable=False)
+    author = Column(String, nullable=False)
+    year = Column(Integer, nullable=False)
+    isbn = Column(String, nullable=False, unique=True, index=True)
+    copies_available = Column(Integer, nullable=False, default=1)
+
+    borrowed_books = relationship(
+        "BorrowedBook", back_populates="book", cascade="all, delete-orphan"
+    )

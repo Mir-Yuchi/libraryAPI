@@ -1,0 +1,29 @@
+name: pre-commit checks
+
+on:
+  pull_request:
+    paths:
+      - '**/*.py'
+      - '.pre-commit-config.yaml'
+      - 'pyproject.toml'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.13
+
+      - name: Install pre-commit
+        run: |
+          python -m venv .venv
+          . .venv/bin/activate
+          pip install pre-commit
+
+      - name: Run pre-commit hooks
+        run: pre-commit run --all-files

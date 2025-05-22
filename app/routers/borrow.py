@@ -4,8 +4,8 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.exc import NoResultFound
 from sqlalchemy.orm import Session
 
-from app.crud.borrowedBook import (borrow_book, get_active_borrows_by_reader,
-                                   return_book)
+from app.crud.borrowed_book import (borrow_book, get_active_borrows_by_reader,
+                                    return_book)
 from app.db.session import get_db
 from app.schemas.borrow import BorrowCreate, BorrowOut, ReturnCreate
 

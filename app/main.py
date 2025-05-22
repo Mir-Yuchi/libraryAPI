@@ -4,11 +4,13 @@ from sqlalchemy.orm import Session
 
 from app.core.config import settings
 from app.db.session import get_db
+from app.routers.book import router as book_router
 from app.routers.user import router as user_router
 
 app = FastAPI(title=settings.app_name, debug=settings.debug)
 
 app.include_router(user_router)
+app.include_router(book_router)
 
 
 @app.get("/health/db")

@@ -15,8 +15,8 @@ class Book(Base):
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, nullable=False)
     author = Column(String, nullable=False)
-    year = Column(Integer, nullable=False)
-    isbn = Column(String, nullable=False, unique=True, index=True)
+    year = Column(Integer, nullable=True)
+    isbn = Column(String, nullable=True, unique=True, index=True)
     copies_available = Column(Integer, nullable=False, default=1)
 
     borrowed_books = relationship(

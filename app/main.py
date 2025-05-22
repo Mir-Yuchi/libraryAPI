@@ -10,6 +10,7 @@ app = FastAPI(title=settings.app_name, debug=settings.debug)
 
 app.include_router(user_router)
 
+
 @app.get("/health/db")
 def health_check(db: Session = Depends(get_db)):
     """

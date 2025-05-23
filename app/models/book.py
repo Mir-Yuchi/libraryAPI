@@ -1,4 +1,4 @@
-from sqlalchemy import (CheckConstraint, Column, Integer, String,
+from sqlalchemy import (CheckConstraint, Column, Integer, String, Text,
                         UniqueConstraint)
 from sqlalchemy.orm import relationship
 
@@ -18,6 +18,7 @@ class Book(Base):
     year = Column(Integer, nullable=True)
     isbn = Column(String, nullable=True, unique=True, index=True)
     copies_available = Column(Integer, nullable=False, default=1)
+    description = Column(Text, nullable=True)
 
     borrowed_books = relationship(
         "BorrowedBook", back_populates="book", cascade="all, delete-orphan"

@@ -12,6 +12,7 @@ class BookBase(BaseModel):
     author: str
     year: int | None = None
     isbn: str | None = None
+    description: str | None = None
 
 
 class BookCreate(BookBase):
@@ -20,6 +21,7 @@ class BookCreate(BookBase):
     """
 
     copies_available: conint(ge=0) = 1
+    description: str | None = None
 
 
 class BookUpdate(BaseModel):
@@ -33,6 +35,7 @@ class BookUpdate(BaseModel):
     year: int | None = None
     isbn: str | None = None
     copies_available: int | None = None
+    description: str | None = None
 
 
 class BookOut(BookBase):
@@ -43,6 +46,7 @@ class BookOut(BookBase):
 
     id: int
     copies_available: int
+    description: str | None = None
 
     class Config:
         from_attributes = True
